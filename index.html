@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hi, love!</title>
+    <style>
+        /* Importing the Mistral font */
+        @import url('https://fonts.googleapis.com/css2?family=Mistral&display=swap');
+
+        body {
+            font-family: 'Mistral', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f7d8e1; /* baby pink */
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            color: #333;
+            font-size: 4rem; /* Larger font size */
+            padding: 0;
+            border-radius: 15px;
+            max-width: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+        }
+
+        .message {
+            font-size: 6rem; /* Larger font size */
+            font-weight: bold;
+            color: #ffffff;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 5px solid #fff;
+            width: 0;
+        }
+
+        .heart {
+            color: black; /* Changed to black */
+            font-size: 3rem;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        /* Cinematic entrance transition */
+        .container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Typing animation */
+        @keyframes typing {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+
+        /* Blinking cursor */
+        @keyframes blink {
+            0% {
+                border-color: transparent;
+            }
+            50% {
+                border-color: #fff;
+            }
+        }
+
+        /* Heartbeat effect */
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+        }
+
+        .sub-message {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 1.5s ease-out;
+        }
+
+        .sub-message.show {
+            opacity: 1;
+        }
+
+        /* Flying Black Hearts */
+        .flying-heart {
+            position: absolute;
+            font-size: 2rem;
+            color: black; /* Changed to black */
+            animation: flyHeart 4s ease-in-out infinite;
+        }
+
+        /* Flying hearts animation */
+        @keyframes flyHeart {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-50vh) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            .container {
+                font-size: 3rem; /* Adjust font size for mobile */
+                padding: 20px;
+            }
+
+            .message {
+                font-size: 4rem; /* Smaller message font size */
+                animation: typing 6s steps(40) 1s forwards, blink 0.75s step-end infinite;
+            }
+
+            .flying-heart {
+                font-size: 1.5rem; /* Smaller hearts on mobile */
+            }
+
+            .sub-message {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                font-size: 2.5rem; /* Adjust further for small screens */
+                padding: 30px;
+            }
+
+            .message {
+                font-size: 2rem;
+                /* Adjust animation timings for mobile */
+            }
+
+            .flying-heart {
+                font-size: 1.2rem; /* Even smaller hearts on very small screens */
+            }
+
+            .sub-message {
+                font-size: 1.2rem;
+            }
+
+            /* Stack the text on top of each other on mobile */
+            .message span {
+                display: block; /* Makes each span appear on a new line */
+                margin-top: 10px; /* Adds space between lines */
+            }
+
+            /* Typing animation for each span individually */
+            .message span:first-child {
+                animation: typing 3s steps(20) forwards, blink 0.75s step-end infinite;
+            }
+
+            .message span:nth-child(2) {
+                animation: typing 3s steps(20) 3s forwards, blink 0.75s step-end infinite;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-message">
+        <div class="message" id="greeting">
+            <span>hi, love!</span>
+            <span>I love you so much ❤️</span>
+        </div>
+    </div>
+
+    <!-- Flying Hearts -->
+    <div class="flying-heart" style="left: 10%; animation-delay: 0s;">❤️</div>
+    <div class="flying-heart" style="left: 30%; animation-delay: 2s;">❤️</div>
+    <div class="flying-heart" style="left: 50%; animation-delay: 1s;">❤️</div>
+    <div class="flying-heart" style="left: 70%; animation-delay: 3s;">❤️</div>
+    <div class="flying-heart" style="left: 90%; animation-delay: 0.5s;">❤️</div>
+
+    <script>
+        // Get the elements to control transitions
+        const mainMessage = document.getElementById('main-message');
+        const greeting = document.getElementById('greeting');
+
+        // Add show class to the container after page load for cinematic effect
+        window.onload = () => {
+            mainMessage.classList.add('show');
+        };
+    </script>
+
+</body>
+</html>
